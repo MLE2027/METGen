@@ -101,5 +101,4 @@ def sample(args, train_label = None):
         sampledata = sampledata.cpu().numpy()
         np.savez(args.syndata_path,data=sampledata, label =  train_label.cpu().numpy())      
 
-        #np.savez(args.syndata_path,data=sampledata.cpu().numpy(), label =  train_label.cpu().numpy())
     return sampledata
