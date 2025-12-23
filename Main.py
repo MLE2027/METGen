@@ -1,6 +1,5 @@
 import numpy as np
 import os
-#os.environ["CUDA_VISIBLE_DEVICES"] = "3"
 from TrainCondition import train, sample
 import sys
 from data.CMAPSSDataset import CMAPSSDataset
@@ -32,8 +31,7 @@ if __name__ == '__main__':
         args.w = 0
         args.input_size = 14
     wandb.init(project="METGen", tags=['all'], config=args )
-    train_loop = 5
-    torch_seed(3)
+    train_loop = 10
     args.model_path =  'weights/' + args.model_name + '_' + args.dataset + '_' + str(args.window_size) + '.pth'
     args.syndata_path =  './weights/syn_data/syn_'+ args.dataset+'_'+args.model_name + '_' + str(args.window_size) + args.sample_type +'.npz'
 
@@ -86,6 +84,6 @@ if __name__ == '__main__':
         print(f"Correlational Score: {C_mean:.3f}")
         print(f"Frechet Distance: {fd_dist:.3f}")
         print("------------------------------------------------")
-        wandb_record(rmse_list,mae_list,score_list, acc_list,fd_dist,CorrelLoss_list)
+        wandb_record(rmse_list,mae_list,score_list,acc_list,fd_dist,CorrelLoss_list)
         wandb.finish()
 
