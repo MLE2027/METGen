@@ -102,14 +102,6 @@ def adjust_learning_rate_decay(optimizer1, optimizer2, epoch, lr):
     for param_group in optimizer2.param_groups:
         param_group['lr'] = lr 
     return lr
-
-def torch_seed(seed_num = 2):
-    np.random.seed(seed_num)
-    torch.manual_seed(seed_num )
-    torch.cuda.manual_seed(seed_num )#为cpu设置种子
-     # 保证每次结果一样
-    # torch.backends.cudnn.deterministic=True
-    torch.backends.cudnn.benchmark=True
     
 def rmse(predictions, targets):
     return np.sqrt(((predictions - targets) ** 2).mean())
