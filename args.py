@@ -34,7 +34,7 @@ arg_parser.add_argument('--input_size',default=14,type=int)
 arg_parser.add_argument('--output_size',default=1,type=int)
 arg_parser.add_argument('--window_size',default=48,type=int)
 arg_parser.add_argument('--dropout',default=0.05,type=float)
-arg_parser.add_argument('--arch',default='att+td',choices=['att', 'original', 'att+td', 'td'],type=str)
+arg_parser.add_argument('--arch',default='att',choices=['att', 'original'],type=str)
 
 arg_parser.add_argument('--dataset',default='FD001',type=str)
 arg_parser.add_argument('--state',default='train''tra',type
