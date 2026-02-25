@@ -1,4 +1,4 @@
-# MetaIndux-TS
+# METGen
 
 Source codes for the Time-Frequency Diffusion Model "METGen".
 
