@@ -133,4 +133,4 @@ python Main.py
 
 ## Acknowledgment
 
-Thanks for the [Dolphin-wang/MetaIndux-TS](https://github.com/Dolphin-wang/MetaIndux-TS)) project for their contributions to this project.
+Thanks for the [Dolphin-wang/MetaIndux-TS](https://github.com/Dolphin-wang/MetaIndux-TS) project for their contributions to this project.
