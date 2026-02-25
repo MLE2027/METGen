@@ -130,13 +130,11 @@ class PolyTrend(nn.Module):
         super().__init__()
         self.degree = degree
         self.weight = nn.Parameter(torch.randn(dim, degree + 1) * 0.01)
-        t = torch.linspace(0, 1, 1024)
-        self.register_buffer('t', t.view(1, 1, -1))
+        ...
     def forward(self, x):
         B, C, L = x.shape
         t = self.t[:, :, :L]
-        basis = [t ** d for d in range(self.degree + 1)]
-        basis = torch.cat(basis, dim=0)           # [degree+1, 1, L]
+        ...
         trend = torch.einsum('cd,dol->ocl', self.weight, basis)
         return trend.expand(B, -1, -1)            # [B,C,L]
 
@@ -163,8 +161,8 @@ class TPEBlock1D(nn.Module):
 
     def forward(self, x):
         # x: [B, dim, L]
-        trend = self.trend_extractor(x)   # 多项式趋势
-        peak = self.peak_pool(x)          # FFT 峰值
+        trend = self.trend_extractor(x)
+        peak = self.peak_pool(x)
         ... 
         out = self.fuse(out)
         return x + out * self.gate(out)   # 门控残差
@@ -197,9 +195,6 @@ class MET_Block(nn.Module):
         super().__init__()
         self.fpn = DCN1D(dim, dilations=fpn_dilations)
         ...
-        self.tpe = TPEBlock1D(dim, kernel_size=tpe_ks,
-                                  poly_degree=poly_degree,
-                                  fft_K=fft_K, freq_th=freq_th)
     def forward(self, x):
         x = self.fpn(x)
         ...
