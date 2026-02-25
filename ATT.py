@@ -131,15 +131,12 @@ class AdaptiveFrequencyEnhancer(nn.Module):
         super().__init__()
         self.dim = dim
         self.num_heads = num_heads
-
         ...
-
         self.output_fusion = nn.Sequential(
             nn.Conv1d(dim * 2, dim, 1),
             nn.GELU(),
             nn.Dropout(dropout)
         )
-
         self.gate = nn.Parameter(torch.tensor(0.1))
 
     def forward(self, x):
@@ -148,8 +145,6 @@ class AdaptiveFrequencyEnhancer(nn.Module):
         x_proj = self.input_proj(x)
         x_fft = torch.fft.rfft(x_proj, dim=-1, norm='ortho')  # [B, C, F]
         freq_len = x_fft.shape[-1]
-
         ...
-
         output = self.output_fusion(torch.cat([x, enhanced_time], dim=1))
         return x + self.gate * output
